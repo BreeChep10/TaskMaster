@@ -1,19 +1,20 @@
-#!/usr/bin/env python
-"""
-User class
-"""
-
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime, Enum
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.sql import func
-from models.base_model import BaseModel, Base
+#!/usr/bin/python3
+import models
+from models.base_model import Base, BaseModel
+from sqlalchemy import Column, String
+from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
-	__tablename__ = 'users'
-
-	username = Column(String, nullable=False, unique=True)
-	email = Column(String, nullable=False, unique=True)
-	#tasks = relationship('Task', backref='assignee')
-	#comments = relationship('Comment', backref='author')
+    """
+    CONSTRUCTS THE CLASS USER
+    """
+    __tablename__ = "users"
+        
+    username = Column(String(128), unique=True, nullable=False)
+    firstname = Column(String(128), nullable=False)
+    lastname = Column(String(128), nullable=False)
+    email = Column(String(128), nullable=False)
+    #projects = relationship("Project", backref="user")
+    #tasks = relationship("Task", backref="user")
+    #comments = relationship("Comment", backref="user")

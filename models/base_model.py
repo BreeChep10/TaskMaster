@@ -5,13 +5,10 @@ A BASEMODEL FOR THE CLASSES
 import uuid
 from datetime import datetime
 import models
-import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, String, DateTime
 
-if models.storage_type == "db":
-    Base = declarative_base()
-
+Base = declarative_base()
 
 class BaseModel:
     """
@@ -19,7 +16,7 @@ class BaseModel:
     ------------
 
 
-    CUISINE
+    TASK MANAGER BASE MODEL
     """
 
     id = Column(String(60), unique=True, primary_key=True)

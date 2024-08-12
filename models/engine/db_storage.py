@@ -1,19 +1,10 @@
 #!/usr/bin/python3
 """DATABASE STORAGE"""
-
 import models
-from models.base_model import BaseModel, Base
-from os import getenv
-import sqlalchemy
-from sqlalchemy import create_engine
+from models.base_model import Base
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
-
-
-# classes = {"User": User,
-#           "Recipe": Recipe,
-#           "Tag": Tag,
-#           "Comment": Comment
-#           }
+from eralchemy import render_er
 
 
 class DBStorage:
@@ -28,21 +19,20 @@ class DBStorage:
         """
         DB STORAGE SET UP
         """
-        CUISINE_MYSQL_USER = "TaskManager_dev" # getenv("CUISINE_MYSQL_USER")
-        CUISINE_MYSQL_PWD = "TaskManager_dev_pwd" # getenv("CUISINE_MYSQL_PWD")
-        CUISINE_MYSQL_HOST = "localhost" # getenv("CUISINE_MYSQL_HOST")
-        CUISINE_MYSQL_DB = "TaskManager_dev_db" # getenv("CUISINE_MYSQL_DB")
-        CUISINE_ENV = getenv("TaskManager_ENV")
+        TASKMANAGER_MYSQL_USER = "taskmanager_dev"
+        TASKMANAGER_MYSQL_PWD = "taskmanager_dev_pwd"
+        TASKMANAGER_MYSQL_HOST = "localhost"
+        TASKMANAGER_MYSQL_DB = "taskmanager_dev_db"
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".
-                                      format(CUISINE_MYSQL_USER,
-                                             CUISINE_MYSQL_PWD,
-                                             CUISINE_MYSQL_HOST,
-                                             CUISINE_MYSQL_DB))
-        if CUISINE_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+                                      format(TASKMANAGER_MYSQL_USER,
+                                             TASKMANAGER_MYSQL_PWD,
+                                             TASKMANAGER_MYSQL_HOST,
+                                             TASKMANAGER_MYSQL_DB))
 
+
+        
     def all(self, cls=None):
-        """returns a dictionary of the query"""
+        """returns a dictionary of the query
         dictionary = {}
         if cls:
             if type(cls) == str:
@@ -52,14 +42,15 @@ class DBStorage:
             for item in query:
                 k = f"{type(item).__name__}.{item.id}"
                 dictionary[k] = item
-        #else:
-        #    all = [User, Recipe, Tag, Comment]
-        #    for i in all:
-        #        query = self.__session.query(i)
-        #        for item in query:
-        #            k = f"{type(item).__name__}.{item.id}"
-        #            dictionary[k] = item
-        return dictionary
+        else:
+            all = [User, Recipe, Tag, Comment]
+            for i in all:
+                query = self.__session.query(i)
+                for item in query:
+                    k = f"{type(item).__name__}.{item.id}"
+                    dictionary[k] = item
+        return dictionary"""
+        pass
 
     def new(self, obj):
         """
