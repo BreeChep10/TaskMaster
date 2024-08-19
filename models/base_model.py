@@ -10,6 +10,7 @@ from sqlalchemy import Column, String, DateTime
 
 Base = declarative_base()
 
+
 class BaseModel:
     """
     MAIN CLASS
@@ -25,20 +26,22 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """
-        CLASS INSTANCIATION
+        CLASS INSTANTIATION
         """
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-            if kwargs.get("created_at", None) and type(self.created_at) is str:
+            if kwargs.get("created_at",
+                          None) and isinstance(self.created_at, str):
                 self.created_at = datetime.strptime(
-                    kwargs["created_at"], '%Y-%m-%dT%H:%M:%S')
+                    kwargs["created_at"], '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 self.created_at = datetime.utcnow()
-            if kwargs.get("updated_at", None) and type(self.updated_at) is str:
+            if kwargs.get("updated_at",
+                          None) and isinstance(self.updated_at, str):
                 self.updated_at = datetime.strptime(
-                    kwargs["updated_at"], '%Y-%m-%dT%H:%M:%S')
+                    kwargs["updated_at"], '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 self.updated_at = datetime.utcnow()
             if kwargs.get("id", None) is None:

@@ -4,7 +4,11 @@ import models
 from models.base_model import Base
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
-from eralchemy import render_er
+from models.user import User
+from models.project import Project
+from models.task import Task
+from models.subtask import Subtask
+from models.timer import Timer
 
 
 class DBStorage:
@@ -33,6 +37,7 @@ class DBStorage:
         
     def all(self, cls=None):
         """returns a dictionary of the query
+        """
         dictionary = {}
         if cls:
             if type(cls) == str:
@@ -43,14 +48,13 @@ class DBStorage:
                 k = f"{type(item).__name__}.{item.id}"
                 dictionary[k] = item
         else:
-            all = [User, Recipe, Tag, Comment]
+            all = [User, Project, Task, Subtask, Timer]
             for i in all:
                 query = self.__session.query(i)
                 for item in query:
                     k = f"{type(item).__name__}.{item.id}"
                     dictionary[k] = item
-        return dictionary"""
-        pass
+        return dictionary
 
     def new(self, obj):
         """
@@ -85,6 +89,12 @@ class DBStorage:
         DISCONNECTS A SESSION
         """
         self.__session.remove()
+
+    def rollback(self):
+        """
+        Rollback session
+        """
+        self.__session.rollback()
 
     def get(self, cls, id):
         """

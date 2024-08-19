@@ -1,0 +1,160 @@
+/* General Styles */
+
+body {
+    background: linear-gradient(to top, #E3F2FD, #00796b);
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    border-radius: 5px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links .cta {
+    background: #00bfa5;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-links .cta:hover {
+    background: #00796b;
+}
+
+/* Projects Section */
+#projects {
+    padding: 3rem 1rem;
+    background: #E3F2FD;
+    text-align: center;
+}
+
+#projects h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #00796b;
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.project-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    max-width: 300px;
+    text-align: left;
+}
+
+.project-card h3 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.project-card .cta {
+    display: inline-block;
+    background: #00bfa5;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.project-card .cta:hover {
+    background: #00796b;
+}
+
+/* Create Project Section */
+#create-project {
+    padding: 3rem 1rem;
+    background: #f1f1f1;
+    text-align: center;
+}
+
+#create-project h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #00796b;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button.cta {
+    background: #00bfa5;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.cta:hover {
+    background: #00796b;
+}
+
+/* Footer */
+footer {
+    padding: 1rem 0;
+    background: #222;
+    color: #ccc;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}

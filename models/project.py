@@ -9,9 +9,15 @@ class Project(BaseModel, Base):
     """
     CONSTRUCTS THE CLASS PROJECT
     """
- 
+
     __tablename__ = "projects"
-        
+
     name = Column(String(128), nullable=False)
-    description = Column(Text, nullable=True)
+    description = Column(String(1024), nullable=True)
     user_id = Column(String(60), ForeignKey('users.id'))
+    comments = relationship("ProjectComment",
+                            backref="project",
+                            cascade="all, delete-orphan")
+    tasks = relationship("Task",
+                         backref="project",
+                         cascade="all, delete-orphan")

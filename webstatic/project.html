@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - Tasks</title>
+    <link rel="stylesheet" href="styles/general-style.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TaskMaster</h1>
+        </header>
+        <main>
+            <!-- Calendar Filter -->
+            <div class="filter-container">
+                <label for="calendar">Filter by Date:</label>
+                <input type="date" id="calendar">
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search tasks...">
+            </div>
+
+            <!-- Task Input Form -->
+           <!-- <div class="task-input">
+                <input type="text" id="new-task" placeholder="Add a new task...">
+                <button id="add-task">Add Task</button>
+	   </div> -->
+
+            <!-- Task List by Day -->
+            <div class="task-list-container">
+                <h2>Tasks for the Week</h2>
+                <div class="days-of-week">
+                    <!-- Monday -->
+                    <div class="day" id="monday">
+                        <h3>Monday</h3>
+                        <ul class="task-list">
+                            <!-- Example tasks -->
+                            <li class="task incomplete">
+                                <span class="task-text">Task 1</span>
+                                <span class="status">Incomplete</span>
+                            </li>
+                            <li class="task complete">
+                                <span class="task-text">Task 2</span>
+                                <span class="status">Complete</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Repeat for other days -->
+                    <div class="day" id="Tuesday">
+                        <h3>Tuesday</h3>
+                        <ul class="task-list">
+                            <!-- Example tasks -->
+                        </ul>
+                    </div>
+
+                    <div class="day" id="Wednesday">
+                        <h3>Wednesday</h3>
+                        <ul class="task-list">
+                            <!-- Example tasks -->
+                        </ul>
+                    </div>
+
+		    <div class="day" id="Thursday">
+			<h3>Thursday</h3>
+			<ul class="task-list">
+			</ul>
+		    </div>
+
+		    <div class="day" id="Friday">
+			<h3>Friday</h3>
+			<ul class="task-list">
+			</ul>
+		    </div>
+
+		    <div class="day" id="Saturday">
+			<h3>Friday</h3>
+			<ul class="task-list">
+			</ul>
+		    </div>
+
+		    <div class="day" id="Sunday">
+			<h3>Friday</h3>
+			<ul class="task-list">
+			</ul>
+		    </div>
+			<!-- Add other days similarly -->
+
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 TaskMaster</p>
+        </footer>
+    </div>
+</body>
+</html>
