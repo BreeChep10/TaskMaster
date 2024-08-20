@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="task_page.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TaskMaster</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tasks</a></li>
+                <li><a href="#" class="cta">Create Task</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="tasks">
+        <h2>Your Tasks</h2>
+        <div class="task-list">
+            <div class="task-card">
+                <h3>Task Name</h3>
+                <p>Status: New</p>
+                <p>Priority: Medium</p>
+                <p>Progress: Not Started</p>
+                <a href="#" class="cta">View Details</a>
+            </div>
+            <!-- Repeat .task-card for each task -->
+        </div>
+    </section>
+
+    <section id="subtasks">
+        <h2>Subtasks</h2>
+        <div class="subtask-list">
+            <div class="subtask-card">
+                <h3>Subtask Name</h3>
+                <p>Status: New</p>
+                <p>Priority: Medium</p>
+                <a href="#" class="cta">View Details</a>
+            </div>
+            <!-- Repeat .subtask-card for each subtask -->
+        </div>
+    </section>
+
+    <section id="timers">
+        <h2>Timers</h2>
+        <div class="timer-list">
+            <div class="timer-card">
+                <h3>Task Name - Timer</h3>
+                <p>Start Time: 10:00 AM</p>
+                <p>End Time: 11:00 AM</p>
+                <p>Duration: 1 hour</p>
+            </div>
+            <!-- Repeat .timer-card for each timer -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 TaskMaster. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
