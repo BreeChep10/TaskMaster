@@ -1,5 +1,3 @@
-/* general-styles.css */
-
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
@@ -47,15 +45,5 @@ header h1 {
 }
 
 .additional-links p {
-    margin: 10px 0 0 0;
-}
+    margin: 10px 0
 
-.sign-up {
-    background-color: #F8F9FA; /* Light Gray */
-    color: #333333; /* Dark Gray */
-    border: 1px solid #E0E0E0;
-    padding: 10px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
-}

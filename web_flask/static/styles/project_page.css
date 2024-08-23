@@ -1,0 +1,169 @@
+body {
+    background: radial-gradient(circle, #2196f3, #f44336);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    width: 100%;
+}
+
+/* Header and Navigation */
+header {
+    background: linear-gradient(to right bottom, #ff4b1f, #ff9068);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 20px 30px -10px rgba(6, 8, 12, 1);
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links .cta {
+    background: #00bfa5;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-links .cta:hover {
+    background: #00796b;
+}
+
+/* Project Section */
+#projects {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+#projects h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.project-card {
+    background: linear-gradient(to left, #ff4b1f, #1fddff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    max-width: 75%;
+    width: 40%;
+    text-align: left;
+    color: #000000;
+    box-shadow: 0px 54px 55px rgba(143, 133, 124, 0.25), 
+                -12px 30px rgba(0, 0, 0, 0.12), 
+                4px 6px rgba(0, 0, 0, 0.12), 
+                12px 13px rgba(0, 0, 0, 0.17), 
+                -3px 5px rgba(0, 0, 0, 0.09);
+}
+
+.project-card h3 {
+    margin-top: 0;
+}
+
+.project-card p {
+    margin: 1rem 0;
+}
+
+.project-card .cta {
+    display: inline-block;
+    background: #00bfa5;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.project-card .cta:hover {
+    background: #00796b;
+}
+
+/* Create Project Section */
+#create-project {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+#create-project h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #000;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button.cta {
+    background: #00bfa5;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.cta:hover {
+    background: #00796b;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to right, #ff4b1f, #ff9068);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2rem;
+}

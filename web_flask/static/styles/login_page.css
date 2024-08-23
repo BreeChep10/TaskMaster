@@ -1,0 +1,133 @@
+body {
+    background: radial-gradient(circle, #2196f3, #f44336);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header and Navigation */
+header {
+    background: linear-gradient(to right bottom, #1d4350, #a43931);
+    color: #fff;
+    padding: 1rem 0;
+    border-radius: 5px;
+    box-shadow: 0px 20px 30px -10px rgba(6, 8, 12, 1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+
+.login-container {
+    margin-bottom: 10px;
+}
+
+.login-container header h1 {
+    font-style: italic;
+    text-shadow: 2px 2px 2px black;
+    padding: 0 10px;
+
+}
+
+.login-form {
+    background: linear-gradient(to left, #ff4b1f, #1fddff);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+}
+
+.login-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn {
+    background: #00bfa5;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.login-btn:hover {
+    background: #00796b;
+}
+
+.additional-links {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.additional-links a {
+    color: #000;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.additional-links a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to right, #1d4350, #a43931);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2rem;
+}

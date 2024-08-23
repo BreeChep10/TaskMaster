@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Scheduler - Tasks</title>
+    <link rel="stylesheet" href="styles/task_page.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/task_page.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><strong>TASKMASTER</strong></div>
+            <div class="logo"><strong>Task Master Web App</strong></div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#" class="cta">Create New Task</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="tasks">
+        <h2>Tasks</h2>
+        <div class="task-container">
+
+            <!-- Task Card Example Start -->
+            <div class="task-card">
+                <label for="taskName"><strong>Task Name:</strong></label>
+                <input type="text" id="taskName" class="editable" value="Build User Interface">
+
+                <div class="info">
+                    <div>
+                        <label for="taskStatus"><strong>Status:</strong></label>
+                        <select id="taskStatus">
+                            <option value="new">New</option>
+                            <option value="in_progress" selected>In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="taskPriority"><strong>Priority:</strong></label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="immediate">Immediate</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="taskProgress"><strong>Progress:</strong></label>
+                        <select id="taskProgress">
+                            <option value="not-started">Not started</option>
+                            <option value="in-progress">In progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="on-hold">On Hold</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="taskDescription"><strong>Description:</strong></label>
+                <textarea id="taskDescription" class="editable">Design and implement the main user interface components for the application.</textarea>
+
+                <div class="subtasks">
+                    <h4>Subtasks</h4>
+                    <div class="subtask">
+                        <label for="subtaskComplete1" class="completion-btn">
+                            <input type="checkbox" id="subtaskComplete1">
+                            Completed
+                        </label>
+                        <label for="subtaskName1"><strong>Subtask Name:</strong></label>
+                        <input type="text" id="subtaskName1" class="editable" value="Design Landing Page">
+
+                        <label for="subtaskDesc1"><strong>Subtask Description:</strong></label>
+                        <textarea id="subtaskDesc1" class="editable">Create a responsive landing page.</textarea>
+
+                        <label for="subtaskStatus1"><strong>Status:</strong></label>
+                        <select id="subtaskStatus1">
+                            <option value="new" selected>New</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+
+                        <label for="subtaskPriority1"><strong>Priority:</strong></label>
+                        <select id="subtaskPriority1">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="immediate">Immediate</option>
+                        </select>
+                    </div>
+
+                    <div class="subtask">
+                        <input type="checkbox" id="subtaskComplete2">
+                        <label for="subtaskName2"><strong>Subtask Name:</strong></label>
+                        <input type="text" id="subtaskName2" class="editable" value="Implement Navbar">
+
+                        <label for="subtaskDesc2"><strong>Subtask Description:</strong></label>
+                        <textarea id="subtaskDesc2" class="editable">Develop a functional navigation bar.</textarea>
+
+                        <label for="subtaskStatus2"><strong>Status:</strong></label>
+                        <select id="subtaskStatus2">
+                            <option value="new">New</option>
+                            <option value="in_progress" selected>In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+
+                        <label for="subtaskPriority2"><strong>Priority:</strong></label>
+                        <select id="subtaskPriority2">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high" selected>High</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="immediate">Immediate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="add-subtask-btn">Add Subtask</button>
+
+                <div class="timer">
+                    <p><strong>Time Remaining:</strong> 2h 15m</p>
+                </div>
+
+                <div class="task-actions">
+                    <button class="action-btn">Edit Task</button>
+                    <button class="action-btn">Complete Task</button>
+                    <button class="action-btn">Delete Task</button>
+                </div>
+            </div>
+            <!-- Task Card Example End -->
+
+            <!-- Repeat .task-card for each task -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Task Scheduler. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -33,12 +33,12 @@ body {
     font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    background-image: url('../images/giorgi-iremadze-5ZR4DxAG3RQ-unsplash.jpg');
+    /*background-image: url('../images/giorgi-iremadze-5ZR4DxAG3RQ-unsplash.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    display: flex;
+    display: flex;*/
 }
 
 .container {

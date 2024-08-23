@@ -1,0 +1,194 @@
+body {
+    background: radial-gradient(circle, #2196f3, #f44336);
+    /*background: radial-gradient(circle , #141e30, #243b55)*/
+}
+
+header {
+    background: linear-gradient(to right bottom, #1d4350, #a43931);
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: rgb(6, 8, 12) 0px 20px 30px -10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-links .cta {
+    background: #00bfa5;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-links .cta:hover {
+    background: #00796b;
+}
+
+/* Task Section */
+
+#tasks {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+#tasks h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #000;
+}
+
+.task-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.task-card {
+    background: linear-gradient(to left, #ff4b1f, #1fddff);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    max-width: 75%; /* Increased max-width to take more space */
+    width: 40%;     /* Ensure task card takes up more than half the width */
+    text-align: left;
+    color: #000000;
+    box-shadow: rgba(143, 133, 124, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.task-card .info {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #2bc0e4, #eaecc6);
+    margin: 30px 0;
+}
+
+.task-card .info * {
+    color: #070707;
+}
+
+.task-card label {
+    font-weight: bold;
+    margin-top: 1rem;
+    display: block;
+}
+
+.task-card input[type="text"],
+.task-card textarea,
+.task-card select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.subtasks {
+    margin-top: 1rem;
+}
+
+.subtask {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.subtask label:first-child {
+    border: 1px solid black;
+    background: red;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 7px;
+}
+.subtask-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    background-color: #1f1c18;
+    width: fit-content;
+    border-radius: 7px;
+    padding: 7px;
+    color: #fff
+}
+
+.subtask-box label {
+    margin-right: 10px;
+}
+
+.subtask h4 {
+    margin-bottom: 1rem;
+}
+
+.add-subtask-btn {
+    background-color: #1f1c18;
+    color: #fff;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.timer {
+    background: #1f1c18;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.task-actions .action-btn {
+    background: #e55d87;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.task-actions .action-btn:hover {
+    background: #5fc3e4;
+    color: #1f1c18
+}
+
+footer {
+    background: linear-gradient(to right, #1d4350, #a43931);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2rem;
+}
