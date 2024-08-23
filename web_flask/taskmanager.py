@@ -79,6 +79,11 @@ def taskmaster():
     return render_template("landing_page.html", cache_id=cache_id)
 
 
+@app.route("/projects", methods=["GET"], strict_slashes=False)
+def projects_page():
+    return render_template("project_page.html", cache_id=cache_id)
+
+
 
 @app.route("/login", methods=["GET", "POST"], strict_slashes=False)
 @app.route("/login/<token>", strict_slashes=False)

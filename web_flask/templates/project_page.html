@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskMaster - Projects</title>
-    <link rel="stylesheet" href="styles/project_page.css">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/project_page.css') + '?' + cache_id }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id}}">
 
 </head>
 <body>
