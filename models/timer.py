@@ -18,7 +18,7 @@ class Timer(BaseModel, Base):
     @property
     def duration(self):
         """
-        Calculate the duration in secs
+        Calculate the duration in seconds
         """
         if self.end_time:
             return (self.end_time - self.start_time).total_seconds()
