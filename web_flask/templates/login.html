@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskMaster - Login</title>
-    <link rel="stylesheet" href="styles/login_page.css">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/login_page.css') + '?' + cache_id }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id }}">
 </head>
 <body>
     <header>
