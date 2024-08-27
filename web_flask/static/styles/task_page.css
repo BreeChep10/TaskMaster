@@ -1,8 +1,11 @@
+/* Global Styles */
 body {
     background: radial-gradient(circle, #2196f3, #f44336);
-    /*background: radial-gradient(circle , #141e30, #243b55)*/
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
+/* Header Styles */
 header {
     background: linear-gradient(to right bottom, #1d4350, #a43931);
     color: #fff;
@@ -45,11 +48,24 @@ nav .logo {
     background: #00796b;
 }
 
-/* Task Section */
-
+/* Task Section Styles */
 #tasks {
     padding: 3rem 1rem;
     text-align: center;
+}
+
+.user-avatar {
+    border: 1px solid black;
+    width: fit-content;
+    margin: auto;
+    padding: 20px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #fe8c00, #f83600);
+    color: white;
+    position: absolute;
+    left: 2.5rem;
+    top: 5rem;
+
 }
 
 #tasks h2 {
@@ -69,13 +85,43 @@ nav .logo {
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
-    max-width: 75%; /* Increased max-width to take more space */
-    width: 40%;     /* Ensure task card takes up more than half the width */
+    max-width: 75%;
+    width: 40%;
     text-align: left;
-    color: #000000;
+    color: #000;
     box-shadow: rgba(143, 133, 124, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: slideIn 0.5s ease-out;
 }
 
+.task-card:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 12px 16px, rgba(0, 0, 0, 0.2) 0px -6px 12px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Task Card Info Section */
 .task-card .info {
     border: 1px solid black;
     display: flex;
@@ -87,11 +133,8 @@ nav .logo {
     margin: 30px 0;
 }
 
-.task-card .info * {
-    color: #070707;
-}
-
-.task-card label {
+.task-card label,
+.subtask label {
     font-weight: bold;
     margin-top: 1rem;
     display: block;
@@ -99,7 +142,10 @@ nav .logo {
 
 .task-card input[type="text"],
 .task-card textarea,
-.task-card select {
+.task-card select,
+.subtask input[type="text"],
+.subtask textarea,
+.subtask select {
     width: 100%;
     padding: 0.5rem;
     margin-top: 0.5rem;
@@ -117,6 +163,7 @@ nav .logo {
     padding: 0.5rem;
     border-radius: 5px;
     margin-bottom: 1rem;
+    animation: slideIn 0.5s ease-out;
 }
 
 .subtask label:first-child {
@@ -126,6 +173,7 @@ nav .logo {
     padding: 5px;
     border-radius: 7px;
 }
+
 .subtask-box {
     display: flex;
     justify-content: flex-start;
@@ -134,15 +182,11 @@ nav .logo {
     width: fit-content;
     border-radius: 7px;
     padding: 7px;
-    color: #fff
+    color: #fff;
 }
 
 .subtask-box label {
     margin-right: 10px;
-}
-
-.subtask h4 {
-    margin-bottom: 1rem;
 }
 
 .add-subtask-btn {
@@ -152,6 +196,7 @@ nav .logo {
     border-radius: 7px;
 }
 
+/* Timer Styles */
 .timer {
     background: #1f1c18;
     color: #fff;
@@ -161,6 +206,7 @@ nav .logo {
     text-align: center;
 }
 
+/* Task Actions Styles */
 .task-actions {
     display: flex;
     justify-content: space-between;
@@ -179,16 +225,143 @@ nav .logo {
 
 .task-actions .action-btn:hover {
     background: #5fc3e4;
-    color: #1f1c18
+    color: #1f1c18;
 }
 
-footer {
-    background: linear-gradient(to right, #1d4350, #a43931);
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
+/* New Task Form Styles */
+
+/* General Form Styling */
+#new-task-form {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: linear-gradient(to right, #2bc0e4, #eaecc6);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    display: none; /* Hidden by default */
+}
+
+#show-task-form-btn {
+    background: #00bfa5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+    margin: 2rem auto;
+    display: block;
+    outline: none;
+}
+
+#show-task-form-btn:hover {
+    background: #00796b;
+}
+
+/* Close Button Styling */
+#close-task-form-btn {
+    background-color: #00bfa5;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    float: right;
+    outline: none;
+}
+
+#close-task-form-btn:hover {
+    background-color: #00796b;
+}
+
+/* Form Title */
+#task-form-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Input and Label Styling */
+form > div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Textarea Styling */
+textarea {
+    resize: vertical; /* Allows users to resize vertically */
+    min-height: 80px;
+}
+
+/* Submit Button Styling */
+.submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Accessibility Helper Classes */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Footer Styles */
+footer {
+    background: #1d4350;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    margin-top: 2rem;
 }

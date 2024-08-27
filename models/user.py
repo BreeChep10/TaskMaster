@@ -15,7 +15,7 @@ class User(BaseModel, Base, UserMixin):
     """
     __tablename__ = "users"
 
-    username = Column(String(128), nullable=False)
+    # username = Column(String(128), nullable=False)
     firstname = Column(String(128), nullable=False)
     lastname = Column(String(128), nullable=False)
     email = Column(String(128), nullable=False)

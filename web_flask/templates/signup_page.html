@@ -11,17 +11,18 @@
 <body>
     <header>
         <nav>
-            <div class="logo"><strong>TASKMASTER</strong></div>
+            <div class="logo">
+                <strong><a href="{{ url_for('taskmaster') }}">TASKMASTER</a></strong>
+            </div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{ url_for('taskmaster') }}">Home</a></li>
+                <li><a href="{{ url_for('projects_page')}}">Projects</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="signup-container">
-        <div class="signup-form">
+        <div class="signup-form" {% if existing %} class="invalid" {% endif %}>
             <form action="/signup" method="POST">
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
@@ -34,6 +35,14 @@
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                {% if existing == True %}
+                <p style="color: white; margin-bottom: 10px">An account with this email already exists</p>
+                {% endif %}
+                
+                {% if invalid_email %}
+                <p style="color: white; margin-bottom: 10px">Invalid email</p>
+                {% endif %}
 
                 <button type="submit" class="signup-btn">Sign Up</button>
             </form>

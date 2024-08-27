@@ -11,11 +11,12 @@
 <body>
     <header>
         <nav>
-            <div class="logo"><strong>TASKMASTER</strong></div>
+            <div class="logo">
+                <strong><a href="{{ url_for('taskmaster') }}">TASKMASTER</a></strong>
+            </div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{ url_for('taskmaster') }}">Home</a></li>
+                <li><a href="{{ url_for('projects_page')}}">Projects</a></li>
             </ul>
         </nav>
     </header>
@@ -24,19 +25,30 @@
 
         <div class="login-form">
             <form action="/login" method="POST">
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
-
+                <label for="email">Username or Email</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email" required>
+        
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
+        
+                <!-- Remember Me Checkbox -->
+                <div class="remember-me">
+                    <label for="remember"><input type=checkbox id="remember" name="remember">Remember Me</label>
+                </div>
+        
                 <button type="submit" class="login-btn">Login</button>
             </form>
+        
             <div class="additional-links">
-                <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+                {% if invalid %}
+                <p style="color: white; margin-bottom: 10px">Incorrect Password or email</p>
+                {% endif %}
                 <p>Don't have an account? <a href="/signup" class="sign-up">Sign up here.</a></p>
             </div>
         </div>
+        
+
+
     </div>
 
     <footer>

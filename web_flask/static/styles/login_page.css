@@ -27,10 +27,27 @@ nav .logo {
     font-size: 1.5rem;
 }
 
+nav .logo strong a {
+    text-decoration: none;
+    color: #fff;
+}
 .nav-links {
     list-style: none;
     display: flex;
     gap: 1rem;
+}
+
+.nav-links * {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    transition: background 0.5s;
+}
+
+.nav-links *:hover {
+    background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    text-decoration: none;
 }
 
 .nav-links a {
@@ -64,13 +81,27 @@ nav .logo {
 }
 
 .login-form {
-    background: linear-gradient(to left, #ff4b1f, #1fddff);
+    background: linear-gradient(to left, #833ab4, #fd1d1d, #fcb045);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     color: #fff;
+}
+
+
+.remember-me {
+    margin: 10px 0;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-me label {
+    font-size: 14px;
+    color: #333;
 }
 
 .login-form label {
@@ -129,5 +160,5 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: auto;
 }

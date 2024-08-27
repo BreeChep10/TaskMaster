@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Code Sent</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/email-confirm.css') + '?' + cache_id}}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">TaskMaster</div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="message-container">
+            <h1>Confirmation Code Sent</h1>
+            <p>A confirmation link has been sent to your email. Please click on the link to confirm your regestration.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 TaskMaster. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

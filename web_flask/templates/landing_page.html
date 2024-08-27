@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>TaskMaster</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/landing_page.css') + '?' + cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/common.css') + '?' + cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/landing_page.css') + '?' + cache_id }}">
 </head>
+
 <body>
     <header>
         <nav>
-            <div class="logo"><strong>TASKMASTER</strong></div>
+            <div class="logo">
+                <strong><a href="{{ url_for('taskmaster') }}">TASKMASTER</a></strong>
+            </div>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="{{ url_for("projects_page") }}" class="cta">Get Started</a></li>
+                {% if user.is_anonymous %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('projects_page') }}">Projects</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h2>Stay Organized and Boost Productivity</h2>
-            <a href="{{ url_for("projects_page")}}" class="cta">Start Now</a>
+            <h1>Stay Organized and Boost Productivity</h1>
+            <p>Efficiently manage your tasks and projects with TaskMaster. Start now and see the difference!</p>
+            <a href="{{ url_for('projects_page') }}" class="cta">Get Started</a>
         </div>
     </section>
 
     <section id="features">
-        <h3>Features</h3>
+        <h2>Key Features</h2>
         <div class="feature-cards">
             <div class="card">
-                <h2>Task Management</h2>
-                <h3>Create, assign, and track tasks with ease.</h3>
+                <img src="{{ url_for('static', filename='images/task_management.svg') }}" alt="Task Management Icon">
+                <h3>Task Management</h3>
+                <p>Create, assign, and track tasks with ease.</p>
             </div>
             <div class="card">
-                <h2>Project Tracking</h2>
-                <h3>Keep an eye on project progress and deadlines.</h3>
+                <img src="{{ url_for('static', filename='images/project_tracking.svg') }}" alt="Project Tracking Icon">
+                <h3>Project Tracking</h3>
+                <p>Keep an eye on project progress and deadlines.</p>
             </div>
         </div>
     </section>
 
-    <section id="about", class="card">
+    <section id="about">
         <h2>About TaskMaster</h2>
-        <h3>TaskMaster is designed to help you organize your tasks and projects, ensuring you <br> meet your deadlines efficiently. Whether you're working solo or with a team, TaskMaster <br>simplifies task management, making it easy to stay on top of your work.</h3>
+        <p>TaskMaster is designed to help you organize your tasks and projects, ensuring you meet your deadlines efficiently. Whether you're working solo or with a team, TaskMaster simplifies task management, making it easy to stay on top of your work.</p>
     </section>
 
     <section id="contact">
@@ -56,5 +68,5 @@
         <p>&copy; 2024 TaskMaster. All Rights Reserved.</p>
     </footer>
 </body>
-</html>
 
+</html>

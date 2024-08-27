@@ -84,6 +84,12 @@ class DBStorage:
         scope = scoped_session(factory)
         self.__session = scope
 
+    def drop(self):
+        """
+        drops tables
+        """
+        Base.metadata.drop_all(self.__engine)
+
     def close(self):
         """
         DISCONNECTS A SESSION

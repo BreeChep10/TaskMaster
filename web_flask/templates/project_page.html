@@ -6,64 +6,87 @@
     <title>TaskMaster - Projects</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='/styles/project_page.css') + '?' + cache_id }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='/scripts/project_page.js')}}"></script>
+    <script src="{{ url_for('static', filename='/scripts/project_page.js') }}"></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo"><h1>TASKMASTER</h1></div>
+            <div class="logo">
+                <strong><a href="{{ url_for('taskmaster') }}">TASKMASTER</a></strong>
+            </div>
             <ul class="nav-links">
-                 <li><a href="{{ url_for('taskmaster')}}">Home</a></li>
+                <li><a href="{{ url_for('taskmaster') }}">Home</a></li>
+                {% if user.is_anonymous %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                {% elif user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <section id="projects">
         {% if user.is_authenticated %}
+            <div class="user-info">
+                {% if user.avatar_url %}
+                    <img src="{{ user.avatar_url }}" alt="User Avatar" class="user-avatar">
+                {% else %}
+                    <div class="empty-avatar">
+                        <span>{{ user.firstname[0:2] }}</span>
+                    </div>
+                {% endif %}
+                <span class="user-name">{{ user.username }}</span>
+            </div>
+            
+            <div class="create-project-card animate-fade-in">
+                <h2>Create a New Project</h2>
+                <form action="/create_project" method="post">
+                    <div class="form-group">
+                        <label for="name">Project Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Project Description:</label>
+                        <textarea id="description" name="description" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="cta">Create Project</button>
+                </form>
+            </div>
+
             {% if user.projects %}
                 <div class="project-list">
-                    <!-- Loop through each project -->
-                    {% for project in user.projects %}
-                    <div class="project-card">
-                        <h3>{{ project.name }}</h3>
+                    {% for project in projects %}
+                    <div class="project-card animate-fade-in">
+                        <div class="project-header">
+                            {% if user.avatar_url %}
+                                <img src="{{ user.avatar_url }}" alt="User Avatar" class="user-avatar-small">
+                            {% else %}
+                                <div class="empty-avatar-small">
+                                    <span>{{ user.firstname[0:2] }}</span>
+                                </div>
+                            {% endif %}
+                            <h3>{{ project.name }}</h3>
+                        </div>
                         <p>{{ project.description }}</p>
                         <a href="{{ url_for('view_project', project_id=project.id) }}" class="cta">View Project</a>
                     </div>
                     {% endfor %}
                 </div>
             {% else %}
-                <!-- Display message when user has no projects -->
-                <div class="no-projects-message">
-                    <p>You don't have any projects yet. <a href="{{ url_for('create_project') }}">Start your first project now!</a></p>
+                <div class="no-projects-card animate-fade-in">
+                    <p>You don't have any projects yet. Start by creating your first project!</p>
                 </div>
             {% endif %}
         {% else %}
-            <!-- Display message when user is not authenticated -->
-            <div class="not-authenticated-message">
-                <p>Please <a href="{{ url_for('login') }}">log in</a> to create or view your projects.</p>
+            <div class="not-authenticated-card animate-fade-in">
+                <h1>Nothing to See Here!</h1>
+                <p>Please <a href="{{ url_for('login') }}" class="login-link">log in</a> to create or view your projects.</p>
             </div>
         {% endif %}
     </section>
-    
-    
-    {% if user.is_authenticated %}
-    <section id="create-project">
-        <h2>Create a New Project</h2>
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="name">Project Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Project Description:</label>
-                <textarea id="description" name="description" rows="4"></textarea>
-            </div>
-            <button type="submit" class="cta">Create Project</button>
-        </form>
-    </section>
-    {% endif %}
 
     <footer>
         <p>&copy; 2024 TaskMaster. All Rights Reserved.</p>

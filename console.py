@@ -147,13 +147,13 @@ class TaskManagerConsole(cmd.Cmd):
         class_name = id = None
 
         if args:
-            arguments = args.split()
+            arguments = args.split(" ")
             if len(arguments) >= 1:
-                class_name = args[0]
+                class_name = arguments[0]
             if len(arguments) >= 2:
                 id = arguments[1]
 
-        if not args or class_name:
+        if not class_name:
             print("** class name missing **")
         elif class_name not in classes:
             print("** class doesn't exist **")

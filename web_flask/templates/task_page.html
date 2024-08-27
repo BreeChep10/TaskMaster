@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Scheduler - Tasks</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') }}">
-    <link rel="stylesheet" href="styles/task_page.css">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon.jpeg') + '?' + cache_id }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/task_page.css') + '?' + cache_id }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/common.css') + '?' + cache_id }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/task_page.js"></script>
+    <script src="{{ url_for('static', filename='scripts/task_page.js') + '?' + cache_id }}"></script>
 </head>
 
 <body>
     <header>
         <nav>
-            <div class="logo"><strong>TASKMASTER</strong></div>
             <div class="logo"><strong>Task Master Web App</strong></div>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -26,119 +25,154 @@
     </header>
 
     <section id="tasks">
-        <h2>Tasks</h2>
+        <h2>Project Tasks</h2>
+        
+        <!-- Display User Avatar -->
+        <div class="user-avatar">
+            <span><h1>{{ user.firstname[0].upper() }}{{ user.lastname[0].upper() }}</h1></span>
+        </div>
+
+        
         <div class="task-container">
-
+            <!-- Example of No Tasks Available -->
+            {% if not tasks %}
+            <div class="no-tasks">
+                <p>No tasks available for this project. Please create a new task using the form below.</p>
+            </div>
+            {% else %}
             <!-- Task Card Example Start -->
-            <div class="task-card">
-                <label for="taskName"><strong>Task Name:</strong></label>
-                <input type="text" id="taskName" class="editable" value="Build User Interface">
-
+            {% for task in tasks %}
+            <div class="task-card" id="task-card-{{ loop.index }}">
+                <label for="taskName{{ loop.index }}"><strong>Task Name:</strong></label>
+                <input type="text" id="taskName{{ loop.index }}" class="editable" value="{{ task.name }}" disabled>
+        
                 <div class="info">
                     <div>
-                        <label for="taskStatus"><strong>Status:</strong></label>
-                        <select id="taskStatus">
-                            <option value="new">New</option>
-                            <option value="in_progress" selected>In Progress</option>
-                            <option value="completed">Completed</option>
+                        <label for="taskStatus{{ loop.index }}"><strong>Status:</strong></label>
+                        <select id="taskStatus{{ loop.index }}" disabled>
+                            <option value="new" {% if task.status == 'new' %}selected{% endif %}>New</option>
+                            <option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                            <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
                         </select>
                     </div>
                     <div>
-                        <label for="taskPriority"><strong>Priority:</strong></label>
-                        <select id="taskPriority">
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                            <option value="urgent">Urgent</option>
-                            <option value="immediate">Immediate</option>
+                        <label for="taskPriority{{ loop.index }}"><strong>Priority:</strong></label>
+                        <select id="taskPriority{{ loop.index }}" disabled>
+                            <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+                            <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+                            <option value="high" {% if task.priority == 'high' %}selected{% endif %}>High</option>
+                            <option value="urgent" {% if task.priority == 'urgent' %}selected{% endif %}>Urgent</option>
+                            <option value="immediate" {% if task.priority == 'immediate' %}selected{% endif %}>Immediate</option>
                         </select>
                     </div>
                     <div>
-                        <label for="taskProgress"><strong>Progress:</strong></label>
-                        <select id="taskProgress">
-                            <option value="not-started">Not started</option>
-                            <option value="in-progress">In progress</option>
-                            <option value="completed">Completed</option>
-                            <option value="on-hold">On Hold</option>
-                            <option value="cancelled">Cancelled</option>
+                        <label for="taskProgress{{ loop.index }}"><strong>Progress:</strong></label>
+                        <select id="taskProgress{{ loop.index }}" disabled>
+                            <option value="not-started" {% if task.progress == 'not-started' %}selected{% endif %}>Not started</option>
+                            <option value="in-progress" {% if task.progress == 'in-progress' %}selected{% endif %}>In progress</option>
+                            <option value="completed" {% if task.progress == 'completed' %}selected{% endif %}>Completed</option>
+                            <option value="on-hold" {% if task.progress == 'on-hold' %}selected{% endif %}>On Hold</option>
+                            <option value="cancelled" {% if task.progress == 'cancelled' %}selected{% endif %}>Cancelled</option>
                         </select>
                     </div>
                 </div>
-
-                <label for="taskDescription"><strong>Description:</strong></label>
-                <textarea id="taskDescription" class="editable">Design and implement the main user interface components for the application.</textarea>
-
+        
+                <label for="taskDescription{{ loop.index }}"><strong>Description:</strong></label>
+                <textarea id="taskDescription{{ loop.index }}" class="editable" disabled>{{ task.description }}</textarea>
+        
                 <div class="subtasks">
                     <h4>Subtasks</h4>
+                    {% for subtask in task.subtasks %}
                     <div class="subtask">
-                        <label for="subtaskComplete1" class="completion-btn">
-                            <input type="checkbox" id="subtaskComplete1">
+                        <label for="subtaskComplete{{ loop.index }}-{{ subtask.index }}" class="completion-btn">
+                            <input type="checkbox" id="subtaskComplete{{ loop.index }}-{{ subtask.index }}" {% if subtask.completed %}checked{% endif %} disabled>
                             Completed
                         </label>
-                        <label for="subtaskName1"><strong>Subtask Name:</strong></label>
-                        <input type="text" id="subtaskName1" class="editable" value="Design Landing Page">
-
-                        <label for="subtaskDesc1"><strong>Subtask Description:</strong></label>
-                        <textarea id="subtaskDesc1" class="editable">Create a responsive landing page.</textarea>
-
-                        <label for="subtaskStatus1"><strong>Status:</strong></label>
-                        <select id="subtaskStatus1">
-                            <option value="new" selected>New</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
+                        <label for="subtaskName{{ loop.index }}-{{ subtask.index }}"><strong>Subtask Name:</strong></label>
+                        <input type="text" id="subtaskName{{ loop.index }}-{{ subtask.index }}" class="editable" value="{{ subtask.name }}" disabled>
+        
+                        <label for="subtaskDesc{{ loop.index }}-{{ subtask.index }}"><strong>Subtask Description:</strong></label>
+                        <textarea id="subtaskDesc{{ loop.index }}-{{ subtask.index }}" class="editable" disabled>{{ subtask.description }}</textarea>
+        
+                        <label for="subtaskStatus{{ loop.index }}-{{ subtask.index }}"><strong>Status:</strong></label>
+                        <select id="subtaskStatus{{ loop.index }}-{{ subtask.index }}" disabled>
+                            <option value="new" {% if subtask.status == 'new' %}selected{% endif %}>New</option>
+                            <option value="in_progress" {% if subtask.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                            <option value="completed" {% if subtask.status == 'completed' %}selected{% endif %}>Completed</option>
                         </select>
-
-                        <label for="subtaskPriority1"><strong>Priority:</strong></label>
-                        <select id="subtaskPriority1">
-                            <option value="low">Low</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="high">High</option>
-                            <option value="urgent">Urgent</option>
-                            <option value="immediate">Immediate</option>
-                        </select>
-                    </div>
-
-                    <div class="subtask">
-                        <input type="checkbox" id="subtaskComplete2">
-                        <label for="subtaskName2"><strong>Subtask Name:</strong></label>
-                        <input type="text" id="subtaskName2" class="editable" value="Implement Navbar">
-
-                        <label for="subtaskDesc2"><strong>Subtask Description:</strong></label>
-                        <textarea id="subtaskDesc2" class="editable">Develop a functional navigation bar.</textarea>
-
-                        <label for="subtaskStatus2"><strong>Status:</strong></label>
-                        <select id="subtaskStatus2">
-                            <option value="new">New</option>
-                            <option value="in_progress" selected>In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-
-                        <label for="subtaskPriority2"><strong>Priority:</strong></label>
-                        <select id="subtaskPriority2">
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high" selected>High</option>
-                            <option value="urgent">Urgent</option>
-                            <option value="immediate">Immediate</option>
+        
+                        <label for="subtaskPriority{{ loop.index }}-{{ subtask.index }}"><strong>Priority:</strong></label>
+                        <select id="subtaskPriority{{ loop.index }}-{{ subtask.index }}" disabled>
+                            <option value="low" {% if subtask.priority == 'low' %}selected{% endif %}>Low</option>
+                            <option value="medium" {% if subtask.priority == 'medium' %}selected{% endif %}>Medium</option>
+                            <option value="high" {% if subtask.priority == 'high' %}selected{% endif %}>High</option>
+                            <option value="urgent" {% if subtask.priority == 'urgent' %}selected{% endif %}>Urgent</option>
+                            <option value="immediate" {% if subtask.priority == 'immediate' %}selected{% endif %}>Immediate</option>
                         </select>
                     </div>
+                    {% endfor %}
                 </div>
-
+        
                 <button class="add-subtask-btn">Add Subtask</button>
-
+        
                 <div class="timer">
-                    <p><strong>Time Remaining:</strong> 2h 15m</p>
+                    <p><strong>Time Remaining:</strong> {{ task.timers[0].duration }}</p>
                 </div>
-
+        
                 <div class="task-actions">
-                    <button class="action-btn">Edit Task</button>
+                    <button class="action-btn" onclick="toggleEditTask({{ loop.index }})">Edit Task</button>
+                    <button class="action-btn" onclick="saveTask({{ loop.index }})" style="display: none;">Save Task</button>
+                    <button class="action-btn" onclick="cancelEdit({{ loop.index }})" style="display: none;">Cancel</button>
                     <button class="action-btn">Complete Task</button>
                     <button class="action-btn">Delete Task</button>
                 </div>
             </div>
-            <!-- Task Card Example End -->
+            {% endfor %}
+            {% endif %}
+        </div>
+        
 
-            <!-- Repeat .task-card for each task -->
+        <!-- New Task Form -->
+        <!-- Button to show the form -->
+        <button id="show-task-form-btn" class="task-btn">Create New Task</button>
+        
+        <!-- Task Creation Form -->
+        
+        <div id="new-task-form" role="form" aria-labelledby="task-form-title" aria-hidden="true">
+            <button id="close-task-form-btn" class="close-btn" aria-label="Close task creation form">Close</button>
+            <h3 id="task-form-title">Create a New Task</h3>
+            
+            <!-- Form tag with action and method attributes -->
+            <form action="{{ '/create_task?' + 'project_id=' + project.id }}" method="POST">
+                <div>
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" name="task-name" required aria-required="true" aria-describedby="task-name-desc">
+                <span id="task-name-desc" class="sr-only">Please enter the name of the task.</span>
+                </div>
+                
+                <div>
+                <label for="task-description">Description:</label>
+                <textarea id="task-description" name="task-description" aria-describedby="task-desc-desc"></textarea>
+                <span id="task-desc-desc" class="sr-only">Provide a brief description of the task.</span>
+                </div>
+                
+                <div>
+                <label for="task-priority">Priority:</label>
+                <select id="task-priority" name="task-priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                </div>
+                
+                <div>
+                <label for="task-due-date">Due Date:</label>
+                <input type="date" id="task-due-date" name="task-due-date" required aria-required="true" aria-describedby="task-due-date-desc">
+                <span id="task-due-date-desc" class="sr-only">Please select the due date for the task.</span>
+                </div>
+        
+                <button type="submit" class="submit-btn">Add Task</button>
+            </form>
         </div>
     </section>
 
@@ -146,5 +180,5 @@
         <p>&copy; 2024 Task Scheduler. All Rights Reserved.</p>
     </footer>
 </body>
-
+        
 </html>

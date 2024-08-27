@@ -1,27 +1,68 @@
-$(document).ready(function() {
-    let subtaskCount = 1;
+document.addEventListener("DOMContentLoaded", function () {
+    const showFormBtn = document.getElementById("show-task-form-btn");
+    const newTaskForm = document.getElementById("new-task-form");
+    const closeFormBtn = document.getElementById("close-task-form-btn");
 
-    $(".add-subtask-btn").on("click", function() {
-        subtaskCount++; // Increment the subtask count
+    showFormBtn.addEventListener("click", function () {
+        newTaskForm.style.display = "block";
+        newTaskForm.setAttribute("aria-hidden", "false");
+        showFormBtn.style.display = "none";
+        showFormBtn.setAttribute("aria-expanded", "true");
+    });
 
-        // Clone the first subtask
-        let newSubtask = $(".subtask").first().clone();
-
-        // Update the IDs and values in the cloned subtask
-        newSubtask.find("input[type='checkbox']").attr("id", "subtaskComplete" + subtaskCount).prop("checked", false);
-        newSubtask.find("label[for^='subtaskName']").attr("for", "subtaskName" + subtaskCount);
-        newSubtask.find("input[type='text']").attr("id", "subtaskName" + subtaskCount).val("");
-
-        newSubtask.find("label[for^='subtaskDesc']").attr("for", "subtaskDesc" + subtaskCount);
-        newSubtask.find("textarea").attr("id", "subtaskDesc" + subtaskCount).val("");
-
-        newSubtask.find("label[for^='subtaskStatus']").attr("for", "subtaskStatus" + subtaskCount);
-        newSubtask.find("select[id^='subtaskStatus']").attr("id", "subtaskStatus" + subtaskCount).val("new");
-
-        newSubtask.find("label[for^='subtaskPriority']").attr("for", "subtaskPriority" + subtaskCount);
-        newSubtask.find("select[id^='subtaskPriority']").attr("id", "subtaskPriority" + subtaskCount).val("low");
-
-        // Append the cloned subtask to the subtasks container
-        $(".subtasks").append(newSubtask);
+    closeFormBtn.addEventListener("click", function () {
+        newTaskForm.style.display = "none";
+        newTaskForm.setAttribute("aria-hidden", "true");
+        showFormBtn.style.display = "block";
+        showFormBtn.setAttribute("aria-expanded", "false");
     });
 });
+
+
+    // Function to toggle edit mode for a specific task
+function toggleEditTask(index) {
+    // Get the task card elements by index
+    const taskCard = document.getElementById(`task-card-${index}`);
+    const inputs = taskCard.querySelectorAll('input.editable, textarea.editable, select');
+    const editButton = taskCard.querySelector('.task-actions .action-btn:nth-child(1)');
+    const saveButton = taskCard.querySelector('.task-actions .action-btn:nth-child(2)');
+    const cancelButton = taskCard.querySelector('.task-actions .action-btn:nth-child(3)');
+
+    // Enable all inputs and textarea for editing
+    inputs.forEach(input => input.disabled = false);
+
+    // Toggle button visibility
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline-block';
+    cancelButton.style.display = 'inline-block';
+}
+
+// Function to save the edited task
+function saveTask(index) {
+    const taskCard = document.getElementById(`task-card-${index}`);
+    const inputs = taskCard.querySelectorAll('input.editable, textarea.editable, select');
+
+    // Disable all inputs after saving
+    inputs.forEach(input => input.disabled = true);
+
+    // Update the server or data (this is where you'd implement your AJAX or form submission)
+
+    // Hide save and cancel buttons, show edit button again
+    taskCard.querySelector('.task-actions .action-btn:nth-child(1)').style.display = 'inline-block';
+    taskCard.querySelector('.task-actions .action-btn:nth-child(2)').style.display = 'none';
+    taskCard.querySelector('.task-actions .action-btn:nth-child(3)').style.display = 'none';
+}
+
+// Function to cancel the editing
+function cancelEdit(index) {
+    const taskCard = document.getElementById(`task-card-${index}`);
+    const inputs = taskCard.querySelectorAll('input.editable, textarea.editable, select');
+
+    // Disable all inputs to revert to non-edit mode
+    inputs.forEach(input => input.disabled = true);
+
+    // Hide save and cancel buttons, show edit button again
+    taskCard.querySelector('.task-actions .action-btn:nth-child(1)').style.display = 'inline-block';
+    taskCard.querySelector('.task-actions .action-btn:nth-child(2)').style.display = 'none';
+    taskCard.querySelector('.task-actions .action-btn:nth-child(3)').style.display = 'none';
+}
