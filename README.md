@@ -29,10 +29,10 @@
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript
-- **Backend**: (Specify the backend technology if used, e.g., Node.js, Django)
-- **Database**: (Specify the database if used, e.g., SQLite, MongoDB)
+- **Backend**: Javascript, Python, Flask
+- **Database**: SQLALchemy, MySQL
 - **Version Control**: Git
-- **Deployment**: (Specify the deployment platform if any, e.g., Heroku, Netlify)
+- **Deployment**: to deploy the project you can run it locally 
 
 ## Installation
 
@@ -51,4 +51,9 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/your-username/taskmaster.git
    cd taskmaster
+then run using the command python3 -m webflask taskmanager, then use the server that is running on your computer
+
+
+
+[Open Game Bar Captures Folder](file:///C:/Users/Bridgit Chepkwony/Videos/Captures)
 

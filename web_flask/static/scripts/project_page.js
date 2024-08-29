@@ -26,13 +26,13 @@ $(document).ready(function () {
 
 function logout() {
     $.ajax({
-        url: "http://0.0.0.0:5001/logout",
+        url: "http://127.0.0.1/logout",
         type: "GET",
         contentType: "application/json",
         dataType: "json",
         success: function(response) {
             console.log(response);
-            window.location.replace("http://0.0.0.0:5001/login");
+            window.location.replace("http://127.0.0.1/login");
         }
     }); // Close the $.ajax call properly here
 }

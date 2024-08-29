@@ -22,7 +22,7 @@
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('signup') }}">Signup</a></li>
                 {% elif user.is_authenticated %}
-                <li><a href="#" onClick="logout()">Logout</a></li>
+                <li><a href="http://127.0.0.1/" onClick="logout()">Logout</a></li>
                 {% endif %}
             </ul>
         </nav>

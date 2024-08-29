@@ -140,7 +140,7 @@ function saveTask(index) {
 
     data = JSON.stringify(data);
 
-    fetch("http://0.0.0.0:5001/save_task", {
+    fetch("http://127.0.0.1:5001/save_task", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -166,7 +166,7 @@ function deleteTask(index) {
     data = JSON.stringify({"task_id": task_id});
 
    $.ajax({
-        url: "http://0.0.0.0:5001/delete_task",
+        url: "http://127.0.0.1:5001/delete_task",
         type: "POST",
         data: data,
         contentType: "application/json",
