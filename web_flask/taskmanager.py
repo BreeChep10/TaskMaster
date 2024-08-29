@@ -85,7 +85,7 @@ def taskmaster():
 
 
 
-@app.route("/logout", methods=["POST"], strict_slashes=False)
+@app.route("/logout", methods=["GET"], strict_slashes=False)
 @login_required
 def logout():
     """
@@ -193,10 +193,14 @@ def projects_page():
     """
     PROJECTS PAGE
     """
-    projects = [k for k in models.storage.all("Project").values() if k.user_id == current_user.id]
-    projects = sorted(projects, key=lambda k: k.created_at)
-    projects.reverse()
-    return render_template("project_page.html", cache_id=cache_id, user=current_user, projects=projects)
+    try:
+        projects = [k for k in models.storage.all("Project").values() if k.user_id == current_user.id]
+        projects = sorted(projects, key=lambda k: k.created_at)
+        projects.reverse()
+        return render_template("project_page.html", cache_id=cache_id, user=current_user, projects=projects)
+    except Exception as e:
+        print(e)
+        return render_template("project_page.html", cache_id=cache_id, user=current_user, projects=[])
 
 @app.route("/view_project", methods=["GET", "POST"], strict_slashes=False)
 def view_project():
@@ -229,6 +233,41 @@ def create_project():
         new_project.save()
         return redirect(url_for("projects_page"))
 
+
+@app.route("/get_tasks", methods=["GET"], strict_slashes=False)
+def get_tasks():
+    project_id = request.args.get("project_id", None)
+    project = models.storage.get("Project", project_id)
+    tasks = project.tasks
+    return jsonify([task.to_dict() for task in tasks])
+
+
+@app.route("/save_task", methods=["POST"], strict_slashes=False)
+def save_task():
+    """
+    Save a task
+    """
+    data = request.get_json()
+    task_id = data.get("task_id")
+    task = models.storage.get("Task", task_id)
+    task.name = data.get("name")
+    task.description = data.get("description")
+    task.taskpriority = data.get("taskpriority")
+    task.save()
+    return jsonify({"save": "success"})
+
+@app.route("/delete_task", methods=["POST"], strict_slashes=False)
+def delete_task():
+    """
+    Deletes a task
+    """
+    data = request.get_json()
+    task_id = data.get("task_id")
+    task = models.storage.get("Task", task_id)
+    task.delete()
+    return jsonify({"delete": "success"})
+
+
 @app.route("/create_task", methods=["POST", "GET"])
 def create_task():
     project_id = request.args.get("project_id", None)
@@ -256,6 +295,7 @@ def create_task():
 
             print(due_date)
             return redirect(request.referrer)
+
 
 if __name__ == "__main__":
     """

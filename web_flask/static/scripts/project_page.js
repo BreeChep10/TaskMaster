@@ -20,3 +20,19 @@ $(document).ready(function () {
         }
     });
 });
+
+
+// function to log out the user
+
+function logout() {
+    $.ajax({
+        url: "http://0.0.0.0:5001/logout",
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+            window.location.replace("http://0.0.0.0:5001/login");
+        }
+    }); // Close the $.ajax call properly here
+}

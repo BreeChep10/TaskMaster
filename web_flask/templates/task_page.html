@@ -17,9 +17,9 @@
         <nav>
             <div class="logo"><strong>Task Master Web App</strong></div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#" class="cta">Create New Task</a></li>
+                <li><a href="http://0.0.0.0:5001/">Home</a></li>
+                <li><a href="http://0.0.0.0:5001/projects">Projects</a></li>
+
             </ul>
         </nav>
     </header>
@@ -42,7 +42,7 @@
             {% else %}
             <!-- Task Card Example Start -->
             {% for task in tasks %}
-            <div class="task-card" id="task-card-{{ loop.index }}">
+            <div class="task-card" id="task-card--{{ loop.index }}" task_id="{{ task.id }}">
                 <label for="taskName{{ loop.index }}"><strong>Task Name:</strong></label>
                 <input type="text" id="taskName{{ loop.index }}" class="editable" value="{{ task.name }}" disabled>
         
@@ -83,7 +83,7 @@
                 <div class="subtasks">
                     <h4>Subtasks</h4>
                     {% for subtask in task.subtasks %}
-                    <div class="subtask">
+                    <div class="subtask" id={subtask.id}>
                         <label for="subtaskComplete{{ loop.index }}-{{ subtask.index }}" class="completion-btn">
                             <input type="checkbox" id="subtaskComplete{{ loop.index }}-{{ subtask.index }}" {% if subtask.completed %}checked{% endif %} disabled>
                             Completed
@@ -124,7 +124,7 @@
                     <button class="action-btn" onclick="saveTask({{ loop.index }})" style="display: none;">Save Task</button>
                     <button class="action-btn" onclick="cancelEdit({{ loop.index }})" style="display: none;">Cancel</button>
                     <button class="action-btn">Complete Task</button>
-                    <button class="action-btn">Delete Task</button>
+                    <button class="action-btn" onclick="deleteTask({{ loop.index }})">Delete Task</button>
                 </div>
             </div>
             {% endfor %}
@@ -170,6 +170,13 @@
                 <input type="date" id="task-due-date" name="task-due-date" required aria-required="true" aria-describedby="task-due-date-desc">
                 <span id="task-due-date-desc" class="sr-only">Please select the due date for the task.</span>
                 </div>
+
+                <div id="subtask-section">
+                    <label for="subtask-1">Subtasks:</label>
+                    <input type="Text" id="subtask-1" name="subtasks[]" placeholder="Enter subtask" aria-describeby="subtask-desc">
+                    <span id="subtask-desc" class="sr-only">Enter a Subtast.</span>
+                </div>
+                <button type="button" id="add-subtask-btn" class="add-subtask-btn">Add Another Subtask</button>
         
                 <button type="submit" class="submit-btn">Add Task</button>
             </form>

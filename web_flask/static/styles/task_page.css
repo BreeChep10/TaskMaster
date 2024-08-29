@@ -196,6 +196,33 @@ nav .logo {
     border-radius: 7px;
 }
 
+
+
+
+/*adding a subtask */
+#subtask-section .subtask-div input[type="text"] {
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    padding: 8px; /* Adds some padding for better appearance */
+    margin-top: 5px; /* Adds a bit of space between inputs */
+}
+
+/* Additional styles for the subtask label and div if needed */
+#subtask-section .subtask-div {
+    margin-top: 10px; /* Adds some spacing between new subtasks */
+}
+
+.add-subtask-btn {
+    margin-top: 10px; /* Adds some spacing above the button */
+}
+
+.submit-btn {
+    margin-top: 20px; /* Adds some spacing above the submit button */
+}
+
+
+
+
 /* Timer Styles */
 .timer {
     background: #1f1c18;
